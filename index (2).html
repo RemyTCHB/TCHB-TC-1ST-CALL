@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TC Checklist</title>
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/RemyTCHB/TCHB-INVESTOR-NETWORK-PORTAL/fbd1d88de35df1c25823df037c503eb6623d068b/icon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        tchb: {
+                            blue: '#36347A', /* Based on logo */
+                            red: '#D32027',  /* Based on logo */
+                            green: '#00A859', /* Based on logo $ */
+                            dark: '#1E1E24'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom checkbox styling */
+        .check-container {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
+        }
+        .check-container:hover {
+            background-color: #f8fafc;
+        }
+        .check-container input {
+            margin-top: 0.3rem;
+            width: 1.25rem;
+            height: 1.25rem;
+            accent-color: #D32027;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .check-text {
+            margin-left: 0.75rem;
+            color: #334155;
+            font-size: 1.05rem;
+            line-height: 1.5;
+            transition: color 0.2s ease;
+        }
+        .check-container input:checked + .check-text {
+            color: #94a3b8;
+            text-decoration: line-through;
+        }
+        .nested-1 { margin-left: 2rem; }
+        .nested-2 { margin-left: 4rem; }
+        
+        /* Accordion transition */
+        .accordion-content {
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        .accordion-content.open {
+            max-height: 2000px; /* Arbitrary large number to allow full expansion */
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 font-sans text-slate-800 antialiased selection:bg-tchb-red selection:text-white pb-20">
+
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50 border-b-4 border-tchb-red">
+        <div class="max-w-4xl mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between">
+            <div class="flex items-center gap-4">
+                <img src="https://raw.githubusercontent.com/RemyTCHB/TCHB-INVESTOR-NETWORK-PORTAL/fbd1d88de35df1c25823df037c503eb6623d068b/logo.png" alt="Total Cash Home Buyers" class="h-12 object-contain" onerror="this.src='https://placehold.co/400x100/36347A/FFF?text=TOTAL+CASH+HOME+BUYERS'">
+            </div>
+            <div class="mt-4 sm:mt-0 text-center sm:text-right">
+                <h1 class="text-xl font-bold text-tchb-blue">TC Checklist</h1>
+                <p class="text-sm font-semibold text-tchb-red">TC FIRST CALL</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 py-8">
+        
+        <!-- Controls -->
+        <div class="flex flex-wrap gap-3 mb-6 justify-end">
+            <button onclick="toggleAll(true)" class="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 text-sm font-semibold rounded shadow transition">
+                <i class="fa-solid fa-folder-open mr-2"></i>Expand All
+            </button>
+            <button onclick="toggleAll(false)" class="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 text-sm font-semibold rounded shadow transition">
+                <i class="fa-solid fa-folder-closed mr-2"></i>Collapse All
+            </button>
+            <button onclick="resetChecklist()" class="px-4 py-2 bg-tchb-red hover:bg-red-700 text-white text-sm font-semibold rounded shadow transition">
+                <i class="fa-solid fa-rotate-right mr-2"></i>Reset Call
+            </button>
+        </div>
+
+        <!-- Checklist Sections -->
+        <div class="space-y-4" id="checklist-container">
+
+            <!-- Mortgage Questions -->
+            <div class="bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden">
+                <button class="accordion-header w-full px-6 py-4 flex justify-between items-center bg-tchb-blue text-white hover:bg-[#2c2a63] transition" onclick="toggleAccordion(this)">
+                    <h2 class="text-lg font-bold"><i class="fa-solid fa-building-columns w-6"></i> Mortgage Questions</h2>
+                    <i class="fa-solid fa-chevron-down transform transition-transform duration-300"></i>
+                </button>
+                <div class="accordion-content open bg-white px-6 py-4">
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Mtg Company ?</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Total Principle Owed / Total Payoff ?</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Is Property In Pre Foreclosure? Any Red Flags Like This ?</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Was There Any Late Payments?</span></label>
+                </div>
+            </div>
+
+            <!-- Pictures -->
+            <div class="bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden">
+                <button class="accordion-header w-full px-6 py-4 flex justify-between items-center bg-tchb-blue text-white hover:bg-[#2c2a63] transition" onclick="toggleAccordion(this)">
+                    <h2 class="text-lg font-bold"><i class="fa-solid fa-camera w-6"></i> Pictures</h2>
+                    <i class="fa-solid fa-chevron-down transform transition-transform duration-300"></i>
+                </button>
+                <div class="accordion-content bg-white px-6 py-4">
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Sending Photos Any Current Photos From Seller ?</span></label>
+                </div>
+            </div>
+
+            <!-- Emergency Contact Info -->
+            <div class="bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden">
+                <button class="accordion-header w-full px-6 py-4 flex justify-between items-center bg-tchb-blue text-white hover:bg-[#2c2a63] transition" onclick="toggleAccordion(this)">
+                    <h2 class="text-lg font-bold"><i class="fa-solid fa-address-book w-6"></i> Emergency Contact Info</h2>
+                    <i class="fa-solid fa-chevron-down transform transition-transform duration-300"></i>
+                </button>
+                <div class="accordion-content bg-white px-6 py-4">
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Who Is The Emergency Contact? Best Phone Number/ Best Way To Communicate With This Person? ( Call Or Text, Etc.)</span></label>
+                </div>
+            </div>
+
+            <!-- HOA Questions -->
+            <div class="bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden">
+                <button class="accordion-header w-full px-6 py-4 flex justify-between items-center bg-tchb-blue text-white hover:bg-[#2c2a63] transition" onclick="toggleAccordion(this)">
+                    <h2 class="text-lg font-bold"><i class="fa-solid fa-users w-6"></i> HOA Questions</h2>
+                    <i class="fa-solid fa-chevron-down transform transition-transform duration-300"></i>
+                </button>
+                <div class="accordion-content bg-white px-6 py-4">
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Whats HOA Contact Info?</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Best Way To Communicate</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Start Ordering The HOA Approval Process At Least Understand Timeline For Process?</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">How Does One Apply?</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Any Upcoming Special Assessments That We Know About Coming Up ? (Maybe Get HOA Contact And Communicate/ Verify Info With Them Directly)</span></label>
+                    <label class="check-container nested-1"><input type="checkbox"><span class="check-text">If So, What Is It For? What Is The Amount? When Will It Be Added To The Bill? Make Sure Sellers Understand THEY’RE Paying It (Discuss Potential Options For Them To Handle Special Assessment, Ie. Money In Escrow, Money Out At Closing, Or Doing A Price Reduction For The Special Assessment Amount Needs To Be Put In Writing Whatever Agreed Upon)</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">HOA Monthly/ Yearly Amount?</span></label>
+                    <label class="check-container nested-1"><input type="checkbox"><span class="check-text">When Paid</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">HOA Rental Restrictions ? (Ie No STR / Only A Certain % Of Units In Building Can Be Rented Have We Reached That Percentage)</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Can Buyers Be Under An LLC/ Biz Entity Or Must It Be Under A Personal Name ?</span></label>
+                </div>
+            </div>
+
+            <!-- SFHs -->
+            <div class="bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden">
+                <button class="accordion-header w-full px-6 py-4 flex justify-between items-center bg-tchb-blue text-white hover:bg-[#2c2a63] transition" onclick="toggleAccordion(this)">
+                    <h2 class="text-lg font-bold"><i class="fa-solid fa-house w-6"></i> SFHs</h2>
+                    <i class="fa-solid fa-chevron-down transform transition-transform duration-300"></i>
+                </button>
+                <div class="accordion-content bg-white px-6 py-4">
+                    <label class="check-container"><input type="checkbox"><span class="check-text">How Long Big Ticket Items Fully Replaced And Or Serviced/Maintained? ( HVAC, Electrical, Plumbing, Roof)</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Occupancy? (Vacant Or Occupied Who Lives In The Home? )</span></label>
+                    <label class="check-container nested-1"><input type="checkbox"><span class="check-text">Owner Occupied</span></label>
+                    <label class="check-container nested-1"><input type="checkbox"><span class="check-text">Tenant Occupied? If Yes What Type Of Lease (Yearly Or Month To Month)? How Much Is Rents?</span></label>
+                    <label class="check-container nested-2"><input type="checkbox"><span class="check-text">If Section 8? How Much Does Section 8 Pay/ Mo? How Much Does The Tenant Pay?</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Confirm Bdr/Bth And Living Square Footage (Heated Square Footage) ?</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Construction Of House? ( Check Local County Property Appraiser Site, Ie. Block, Wood Frame, Etc? )</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Year Built</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Utilities ( City Water And Sewer Or Well And Septic? If Well/Septic Most Recent Maintenance Done And/Or When Last Replaced)</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Confirm Lot Size? Lot Dimensions ?</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Confirm Floodzone Code (And What Code Means No Flood Zone, Minimal Flood, Etc)</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Confirm Residential Zoning Code ( And What It Means)</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Confirm If Pool Or No Pool</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Parking Type?</span></label>
+                    <label class="check-container nested-1"><input type="checkbox"><span class="check-text">If Garage , Type? ( How Many Cars / Attached Or Detached)</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Is Prop. In Historic Zone?</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">School Zoning? (Elementary, Middle, High)</span></label>
+                </div>
+            </div>
+
+            <!-- Land -->
+            <div class="bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden">
+                <button class="accordion-header w-full px-6 py-4 flex justify-between items-center bg-tchb-blue text-white hover:bg-[#2c2a63] transition" onclick="toggleAccordion(this)">
+                    <h2 class="text-lg font-bold"><i class="fa-solid fa-map w-6"></i> Land</h2>
+                    <i class="fa-solid fa-chevron-down transform transition-transform duration-300"></i>
+                </button>
+                <div class="accordion-content bg-white px-6 py-4">
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Confirm Lot Square Footage</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Confirm Lot Dimensions (Dispo Can Confirm)</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Confirm Residential Zoning Code ( And What It Means)</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Confirm Flood Zone Code (And What Code Means No Flood Zone, Minimal Flood, Etc )</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Has There Ever Been A Property On The Lot? If So When Was It Demolished?</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Have Impact Fees Been Paid ? If So How Much Were They?</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Are There Utilities On The Lot Or On The Road Passing In Front Of Lot? Or How Far Away Are The Utilities From Lot?</span></label>
+                    <label class="check-container nested-1"><input type="checkbox"><span class="check-text">What Type Of Utilities? (Ie City Water/ Sewer Or Well And Septic If The Latter When Was It Maintained/ Replaced Last?) Confirm This Info Whether Raw Land Or Not</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Is There A Standard Survey?</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Any Ecological Surveys Done?</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Any Protected Species On The Land We Need To Know About (Ie Turtles/ Specific Trees, Etc)?</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Land Is Protected Area/ Historical ?</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Is There Existing Building?</span></label>
+                    <label class="check-container nested-1"><input type="checkbox"><span class="check-text">Situation ? Liens? Violations? Need Demo?</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Is The Lot ‘Level’ ? Any Elevation We Need To Know About?</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Any Wetlands On Prop/ Any Lowlands On Prop?</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">If Rural, Any Animal Restrictions?</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Whats Nearest Major City Nearby ?</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Whats Nearest Grocery Store?</span></label>
+                </div>
+            </div>
+
+            <!-- Income Producing Properties -->
+            <div class="bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden">
+                <button class="accordion-header w-full px-6 py-4 flex justify-between items-center bg-tchb-blue text-white hover:bg-[#2c2a63] transition" onclick="toggleAccordion(this)">
+                    <h2 class="text-lg font-bold"><i class="fa-solid fa-city w-6"></i> Income Producing Properties</h2>
+                    <i class="fa-solid fa-chevron-down transform transition-transform duration-300"></i>
+                </button>
+                <div class="accordion-content bg-white px-6 py-4">
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Tenant Occupied? If Yes What Type Of Lease (Yearly Or Month To Month)? How Much Is Rents? Retail Tenants Or Section 8 Tenants? When Does Lease End?</span></label>
+                    <label class="check-container nested-1"><input type="checkbox"><span class="check-text">Lease Docs Needed?</span></label>
+                    <label class="check-container nested-1"><input type="checkbox"><span class="check-text">Rent Rolls?</span></label>
+                    <label class="check-container nested-1"><input type="checkbox"><span class="check-text">Current P&Ls?</span></label>
+                    <label class="check-container nested-1"><input type="checkbox"><span class="check-text">If Occupied, How Long Have Tenants Been There / How Long Do They Want To Be There For?</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">When Was The Last Time The Big Ticket Items Were Replaced (HVAC/ Roof/ Plumbing/ Electric )</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">How Many Units?</span></label>
+                    <label class="check-container nested-1"><input type="checkbox"><span class="check-text">Layout Of Units (Ie : Side By Side Duplex Vs Main Home With Smaller Detached ADU Vs Top And Bottom Duplex )</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Access Instructions?</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Bdr/Bth Count Of Each Unit?</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Sqft Of Each Unit</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">How Many Meters? (Electric And Water Meters)</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">This Zoned For Mult Family?</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Utilities? (City Water/Sewer Or Well And Septic)</span></label>
+                    <label class="check-container nested-1"><input type="checkbox"><span class="check-text">If Well/Septic When Last Replaced/ Maintained</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">How Many Parking Spots Total ?( Off Street Or On Street Parking)</span></label>
+                </div>
+            </div>
+
+            <!-- Mobile Homes -->
+            <div class="bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden">
+                <button class="accordion-header w-full px-6 py-4 flex justify-between items-center bg-tchb-blue text-white hover:bg-[#2c2a63] transition" onclick="toggleAccordion(this)">
+                    <h2 class="text-lg font-bold"><i class="fa-solid fa-trailer w-6"></i> Mobile Homes</h2>
+                    <i class="fa-solid fa-chevron-down transform transition-transform duration-300"></i>
+                </button>
+                <div class="accordion-content bg-white px-6 py-4">
+                    <p class="text-sm font-semibold text-tchb-red mb-4 ml-2"><i class="fa-solid fa-circle-exclamation mr-1"></i> Treat Like SFH With All The Questions But Add These:</p>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Mobile Home Model Number</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Mobile Home Manufacturer</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">If Title Was Retired Or Not?</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Permanent Foundation?</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Verify Year Built , If Possible ?</span></label>
+                    <label class="check-container"><input type="checkbox"><span class="check-text">Single Wide Vs Double Wide?</span></label>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        // Accordion functionality
+        function toggleAccordion(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('.fa-chevron-down');
+            
+            if (content.classList.contains('open')) {
+                content.classList.remove('open');
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                content.classList.add('open');
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // Expand / Collapse All
+        function toggleAll(expand) {
+            const contents = document.querySelectorAll('.accordion-content');
+            const icons = document.querySelectorAll('.accordion-header .fa-chevron-down');
+            
+            contents.forEach((content, index) => {
+                if (expand) {
+                    content.classList.add('open');
+                    icons[index].style.transform = 'rotate(180deg)';
+                } else {
+                    content.classList.remove('open');
+                    icons[index].style.transform = 'rotate(0deg)';
+                }
+            });
+        }
+
+        // Reset Checklist
+        function resetChecklist() {
+            if(confirm("Are you sure you want to clear all checked items? This will reset the script for the next call.")) {
+                const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+                checkboxes.forEach(cb => cb.checked = false);
+                
+                // Optionally collapse all sections on reset to start fresh
+                toggleAll(false);
+                
+                // Keep the first one open by default
+                const firstContent = document.querySelector('.accordion-content');
+                const firstIcon = document.querySelector('.accordion-header .fa-chevron-down');
+                firstContent.classList.add('open');
+                firstIcon.style.transform = 'rotate(180deg)';
+            }
+        }
+        
+        // Initialize logic: First section open, others closed
+        document.addEventListener('DOMContentLoaded', () => {
+             const contents = document.querySelectorAll('.accordion-content');
+             const icons = document.querySelectorAll('.accordion-header .fa-chevron-down');
+             
+             contents.forEach((content, index) => {
+                 if(index !== 0) {
+                     content.classList.remove('open');
+                     icons[index].style.transform = 'rotate(0deg)';
+                 } else {
+                     icons[index].style.transform = 'rotate(180deg)';
+                 }
+             });
+        });
+    </script>
+</body>
+</html>
