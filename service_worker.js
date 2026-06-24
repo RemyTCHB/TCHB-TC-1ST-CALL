@@ -3,7 +3,7 @@ const urlsToCache = [
   './',
   './tchb_script.html',
   './manifest.json',
-  'https://raw.githubusercontent.com/RemyTCHB/TCHB-INVESTOR-NETWORK-PORTAL/main/icon.svg',
+  'https://raw.githubusercontent.com/RemyTCHB/TCHB-TC-1ST-CALL/d8876d6e5f95680a4c2760da336b32020f3ac881/icon.png',
   'https://raw.githubusercontent.com/RemyTCHB/TCHB-INVESTOR-NETWORK-PORTAL/main/logo.svg'
 ];
 
